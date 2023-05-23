@@ -2,7 +2,7 @@
 
 /**
  * get_len -function gets the lenght of a number.
- * @n: number.
+ * @n: number
  * Return: Lenght of a number.
  */
 int get_len(int n)

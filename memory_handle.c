@@ -62,8 +62,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  * @new_size: new size of the new memory block.
  *
  * Return: pointer
- * if new_size == old_size, returns pointer.
- * if malloc fails, returns NULL.
  */
 char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 {

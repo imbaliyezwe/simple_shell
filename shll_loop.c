@@ -3,7 +3,7 @@
 /**
  * without_comment - Deletes comments
  * @in: string to check
- * Return: string without comments
+ * Return: string
  */
 char *without_comment(char *in)
 {

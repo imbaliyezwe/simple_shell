@@ -2,7 +2,7 @@
 
 /**
  * exec_line -checks for  builtins and commands
- * @datash: data(args)
+ * @datash: relevant data(args)
  * Return:always 1 on success.
  */
 int exec_line(data_shell *datash)

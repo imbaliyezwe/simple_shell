@@ -2,7 +2,7 @@
 
 /**
  * free_data - function frees data structure
- * @datash: data
+ * @datash:relevant  data
  * Return: nothing
  */
 void free_data(data_shell *datash)

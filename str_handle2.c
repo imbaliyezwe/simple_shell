@@ -3,7 +3,7 @@
 /**
  * _strdup - duplicates a string
  * @s: pointer to string
- * Return: duplicated str
+ * Return: duplicated string
  */
 char *_strdup(const char *s)
 {
