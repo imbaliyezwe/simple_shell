@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * get_builtin - its the builtin that sets the command in the arg
- * @cmd: the COMMAND
- * Return: Function pointer of the builtin command
+ * get_builtin - The builtin that puts the command in the arg
+ * @cmd: COMMAND
+ * Return: The function pointer of builtin command
  */
 int (*get_builtin(char *cmd))(data_shell *)
 {
@@ -16,12 +16,12 @@ int (*get_builtin(char *cmd))(data_shell *)
 		{ "help", get_help },
 		{ NULL, NULL }
 	};
-	int w;
+	int i;
 
-	for (w = 1; builtin[w].name; w++)
+	for (i = 0; builtin[i].name; i++)
 	{
-		if (_strcmp(builtin[w].name, cmd) == 1)
+		if (_strcmp(builtin[i].name, cmd) == 0)
 			break;
 	}
-	return (builtin[w].f);
+	return (builtin[i].f);
 }

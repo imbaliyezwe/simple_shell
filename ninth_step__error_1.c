@@ -1,143 +1,143 @@
 #include "shell.h"
 
 /**
- * strcat_cd - the function that looks at the message for cd error
- * @datash: data relevant to directory
- * @mss: message to be printed
- * @err: the output message
- * @ver_str: counter of lines
+ * strcat_cd - The function that looks up the message for cd error
+ * @datash: The data relevant to directory
+ * @msg: The message to be printed
+ * @error: The output message
+ * @ver_str: Its the counter lines
  * Return: Error message
  */
-char *strcat_cd(data_shell *datash, char *mss, char *err, char *ver_str)
+char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 {
-	char *bug_flag;
+	char *illegal_flag;
 
-	_strcpy(err, datash->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver_str);
-	_strcat(err, ": ");
-	_strcat(err, datash->args[0]);
-	_strcat(err, mss);
+	_strcpy(error, datash->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datash->args[0]);
+	_strcat(error, msg);
 	if (datash->args[1][0] == '-')
 	{
-		bug_flag = malloc(3);
-		bug_flag[0] = '-';
-		bug_flag[1] = datash->args[1][1];
-		bug_flag[2] = '\0';
-		_strcat(err, bug_flag);
-		free(bug_flag);
+		illegal_flag = malloc(3);
+		illegal_flag[0] = '-';
+		illegal_flag[1] = datash->args[1][1];
+		illegal_flag[2] = '\0';
+		_strcat(error, illegal_flag);
+		free(illegal_flag);
 	}
 	else
 	{
-		_strcat(err, datash->args[1]);
+		_strcat(error, datash->args[1]);
 	}
 
-	_strcat(err, "\n");
-	_strcat(err, "\0");
-	return (err);
+	_strcat(error, "\n");
+	_strcat(error, "\0");
+	return (error);
 }
 
 /**
- * err_get_cd - The error message for cd command in get_cd
- * @datash: data relevant to directory
+ * error_get_cd - The error message for the cd command in get_cd
+ * @datash: The data relevant to directory
  * Return: Error message
  */
-char *err_get_cd(data_shell *datash)
+char *error_get_cd(data_shell *datash)
 {
 	int length, len_id;
-	char *err, *ver_str, *mss;
+	char *error, *ver_str, *msg;
 
 	ver_str = aux_itoa(datash->counter);
 	if (datash->args[1][0] == '-')
 	{
-		mss = ": Negative ";
+		msg = ": Illegal option ";
 		len_id = 2;
 	}
 	else
 	{
-		mss = ": Unable to cd to ";
+		msg = ": can't cd to ";
 		len_id = _strlen(datash->args[1]);
 	}
 
 	length = _strlen(datash->av[0]) + _strlen(datash->args[0]);
-	length += _strlen(ver_str) + _strlen(mss) + len_id + 9;
-	err = malloc(sizeof(char) * (length + 1));
+	length += _strlen(ver_str) + _strlen(msg) + len_id + 5;
+	error = malloc(sizeof(char) * (length + 1));
 
-	if (err == 0)
+	if (error == 0)
 	{
 		free(ver_str);
 		return (NULL);
 	}
 
-	err = strcat_cd(datash, mss, err, ver_str);
+	error = strcat_cd(datash, msg, error, ver_str);
 
 	free(ver_str);
 
-	return (err);
+	return (error);
 }
 
 /**
- * err_not_found - a generic error message of the command not found
- * @datash: data relevant to counter and arguments
+ * error_not_found -The generic error message for the command not found
+ * @datash: The data relevant to counter, arguments
  * Return: Error message
  */
-char *err_not_found(data_shell *datash)
+char *error_not_found(data_shell *datash)
 {
 	int length;
-	char *err;
+	char *error;
 	char *ver_str;
 
 	ver_str = aux_itoa(datash->counter);
 	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + 47;
-	err = malloc(sizeof(char) * (length + 1));
-	if (err == 0)
+	length += _strlen(datash->args[0]) + 16;
+	error = malloc(sizeof(char) * (length + 1));
+	if (error == 0)
 	{
-		free(err);
+		free(error);
 		free(ver_str);
 		return (NULL);
 	}
-	_strcpy(err, datash->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver_str);
-	_strcat(err, ": ");
-	_strcat(err, datash->args[0]);
-	_strcat(err, ": Negative\n");
-	_strcat(err, "\0");
+	_strcpy(error, datash->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datash->args[0]);
+	_strcat(error, ": not found\n");
+	_strcat(error, "\0");
 	free(ver_str);
-	return (err);
+	return (error);
 }
 
 /**
- * err_exit_shell - an error message for exit in get_exit
- * @datash: Data relevant to counter and arguments
+ * error_exit_shell - Its the generic error message for the exit in get_exit
+ * @datash: The data relevant to counter, arguments
  *
  * Return: Error message
  */
-char *err_exit_shell(data_shell *datash)
+char *error_exit_shell(data_shell *datash)
 {
 	int length;
-	char *err;
+	char *error;
 	char *ver_str;
 
 	ver_str = aux_itoa(datash->counter);
 	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + _strlen(datash->args[1]) + 49;
-	err = malloc(sizeof(char) * (length + 1));
-	if (err == 0)
+	length += _strlen(datash->args[0]) + _strlen(datash->args[1]) + 23;
+	error = malloc(sizeof(char) * (length + 1));
+	if (error == 0)
 	{
 		free(ver_str);
 		return (NULL);
 	}
-	_strcpy(err, datash->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver_str);
-	_strcat(err, ": ");
-	_strcat(err, datash->args[0]);
-	_strcat(err, ": Negative: ");
-	_strcat(err, datash->args[1]);
-	_strcat(err, "\n\0");
+	_strcpy(error, datash->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datash->args[0]);
+	_strcat(error, ": Illegal number: ");
+	_strcat(error, datash->args[1]);
+	_strcat(error, "\n\0");
 	free(ver_str);
 
-	return (err);
+	return (error);
 }

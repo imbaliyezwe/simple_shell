@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * aux_help -The  help information in the builtin help.
+ * aux_help - The help information for builtin help.
  * Return: No return
  */
 void aux_help(void)
@@ -9,21 +9,21 @@ void aux_help(void)
 	char *help = "help: help [-dms] [pattern ...]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "It shows information about the builtin commands.\n ";
+	help = "\tDisplay information about builtin commands.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "It shows brief summaries of the builtin commands.\n";
+	help = "Displays brief summaries of builtin commands.\n";
 	write(STDOUT_FILENO, help, _strlen(help));
 }
 /**
- * aux_help_alias - To help information in the builtin alias.
- * Return: no return
+ * aux_help_alias - The help information for builtin alias.
+ * Return: No return
  */
 void aux_help_alias(void)
 {
-	char *help = "alias: alias [-z] [name[=value]...]\n";
+	char *help = "alias: alias [-p] [name[=value]...]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "It defines or displays aliases.\n ";
+	help = "\tDefine or display aliases.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
 }
 /**
@@ -32,9 +32,9 @@ void aux_help_alias(void)
  */
 void aux_help_cd(void)
 {
-	char *help = "cd: cd [-X|[-z [-m]] [-@]] [dir]\n";
+	char *help = "cd: cd [-L|[-P [-e]] [-@]] [dir]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "It changes the shell working directory.\n ";
+	help = "\tChange the shell working directory.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
 }

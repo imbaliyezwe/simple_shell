@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * cd_dot - it changes to the parent directory
- * @datash: data relevant to (environ)
- * Return: no return
+ * cd_dot - This changes to the parent directory
+ * @datash: The data relevant to environ
+ * Return: No return
  */
 void cd_dot(data_shell *datash)
 {
@@ -50,10 +50,10 @@ void cd_dot(data_shell *datash)
 }
 
 /**
- * cd_to - it changes to a directory given by the user
+ * cd_to - This changes to a directory inserted by the user
  *
- * @datash: data relevant to directories
- * Return: no return
+ * @datash: The data relevant to directories
+ * Return: No return
  */
 void cd_to(data_shell *datash)
 {
@@ -62,10 +62,10 @@ void cd_to(data_shell *datash)
 
 	getcwd(pwd, sizeof(pwd));
 
-	dir = datash->args[2];
+	dir = datash->args[1];
 	if (chdir(dir) == -1)
 	{
-		get_error(datash, 4);
+		get_error(datash, 2);
 		return;
 	}
 
@@ -84,10 +84,10 @@ void cd_to(data_shell *datash)
 }
 
 /**
- * cd_previous - it changes to the previous directory
+ * cd_previous - This changes to the last directory
  *
- * @datash: data relevant to the environ
- * Return: no return
+ * @datash: The data relevant to environ
+ * Return: No return
  */
 void cd_previous(data_shell *datash)
 {
@@ -114,7 +114,7 @@ void cd_previous(data_shell *datash)
 	p_pwd = _getenv("PWD", datash->_environ);
 
 	write(STDOUT_FILENO, p_pwd, _strlen(p_pwd));
-	write(STDOUT_FILENO, "\n", 2);
+	write(STDOUT_FILENO, "\n", 1);
 
 	free(cp_pwd);
 	if (p_oldpwd)
@@ -126,10 +126,10 @@ void cd_previous(data_shell *datash)
 }
 
 /**
- * cd_to_home - it changes to the home directory
+ * cd_to_home - This hanges to the home directory
  *
  * @datash: Data relevant to environ
- * Return: no return
+ * Return: No return
  */
 void cd_to_home(data_shell *datash)
 {
@@ -150,7 +150,7 @@ void cd_to_home(data_shell *datash)
 
 	if (chdir(home) == -1)
 	{
-		get_error(datash, 4);
+		get_error(datash, 2);
 		free(p_pwd);
 		return;
 	}

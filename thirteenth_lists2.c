@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * add_sep_node - It adds a separator found in the end of a sep_list.
- * @hd: The head of the linked list.
+ * add_sep_node_end -This  adds a separator found at the end of the sep_list.
+ * @head: The head of  linked list.
  * @sep: The separator found (; | &).
- * Return: Address of the head.
+ * Return: The address of the head.
  */
-sep_list *add_sep_node(sep_list **hd, char sep)
+sep_list *add_sep_node_end(sep_list **head, char sep)
 {
 	sep_list *new, *temp;
 
@@ -16,11 +16,11 @@ sep_list *add_sep_node(sep_list **hd, char sep)
 
 	new->separator = sep;
 	new->next = NULL;
-	temp = *hd;
+	temp = *head;
 
 	if (temp == NULL)
 	{
-		*hd = new;
+		*head = new;
 	}
 	else
 	{
@@ -29,38 +29,38 @@ sep_list *add_sep_node(sep_list **hd, char sep)
 		temp->next = new;
 	}
 
-	return (*hd);
+	return (*head);
 }
 
 /**
- * free_sep_list - frees a sep_list
- * @hd: The head of the linked list.
+ * free_sep_list - It frees a sep_list
+ * @head: The head of the linked list.
  * Return: No return.
  */
-void free_sep_list(sep_list **hd)
+void free_sep_list(sep_list **head)
 {
 	sep_list *temp;
 	sep_list *curr;
 
-	if (hd != NULL)
+	if (head != NULL)
 	{
-		curr = *hd;
+		curr = *head;
 		while ((temp = curr) != NULL)
 		{
 			curr = curr->next;
 			free(temp);
 		}
-		*hd = NULL;
+		*head = NULL;
 	}
 }
 
 /**
- * add_line_node - It adds a command line in the end of a line_list.
- * @hd: The head of the linked list.
+ * add_line_node_end - It adds a comnd line at the end of the line_list.
+ * @head: The head of linked list.
  * @line: The command line.
  * Return: Address of the head.
  */
-line_list *add_line_node(line_list **hd, char *line)
+line_list *add_line_node_end(line_list **head, char *line)
 {
 	line_list *new, *temp;
 
@@ -70,11 +70,11 @@ line_list *add_line_node(line_list **hd, char *line)
 
 	new->line = line;
 	new->next = NULL;
-	temp = *hd;
+	temp = *head;
 
 	if (temp == NULL)
 	{
-		*hd = new;
+		*head = new;
 	}
 	else
 	{
@@ -83,27 +83,27 @@ line_list *add_line_node(line_list **hd, char *line)
 		temp->next = new;
 	}
 
-	return (*hd);
+	return (*head);
 }
 
 /**
  * free_line_list -It  frees the line_list
- * @hd: The head of the linked list.
+ * @head: The head of linked list.
  * Return: No return.
  */
-void free_line_list(line_list **hd)
+void free_line_list(line_list **head)
 {
 	line_list *temp;
 	line_list *curr;
 
-	if (hd != NULL)
+	if (head != NULL)
 	{
-		curr = *hd;
+		curr = *head;
 		while ((temp = curr) != NULL)
 		{
 			curr = curr->next;
 			free(temp);
 		}
-		*hd = NULL;
+		*head = NULL;
 	}
 }

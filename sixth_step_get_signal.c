@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * get_signant - Handle the (control) crtl + c call in prompt
+ * get_sigint -To handle the crtl + c call in prompt
  * @sig: The Signal Handler
  */
-void get_signant(int sig)
+void get_sigint(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "\n-_- ", 9);
+	write(STDOUT_FILENO, "\n^-^ ", 5);
 }

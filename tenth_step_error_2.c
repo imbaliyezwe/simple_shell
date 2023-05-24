@@ -1,69 +1,69 @@
 #include "shell.h"
 
 /**
- * err_env - error message for the env in get_env.
- * @datash: data relevant to counter & arguments
+ * error_env - Its the error message for env in the get_env.
+ * @datash: The data relevant to counter, arguments
  * Return: Error message.
  */
-char *err_env(data_shell *datash)
+char *error_env(data_shell *datash)
 {
 	int length;
-	char *err;
+	char *error;
 	char *ver_str;
-	char *mss;
+	char *msg;
 
 	ver_str = aux_itoa(datash->counter);
-	mss = ": Unable to add/remove from environment\n";
+	msg = ": Unable to add/remove from environment\n";
 	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + _strlen(mss) + 58;
-	err = malloc(sizeof(char) * (length + 1));
-	if (err == 0)
+	length += _strlen(datash->args[0]) + _strlen(msg) + 4;
+	error = malloc(sizeof(char) * (length + 1));
+	if (error == 0)
 	{
-		free(err);
+		free(error);
 		free(ver_str);
 		return (NULL);
 	}
 
-	_strcpy(err, datash->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver_str);
-	_strcat(err, ": ");
-	_strcat(err, datash->args[0]);
-	_strcat(err, mss);
-	_strcat(err, "\0");
+	_strcpy(error, datash->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datash->args[0]);
+	_strcat(error, msg);
+	_strcat(error, "\0");
 	free(ver_str);
 
-	return (err);
+	return (error);
 }
 /**
- * err_path_116 - error message for the path and failure denied access.
- * @datash: Data relevant to counter & arguments.
+ * error_path_126 - The error message for the path and failure denied permission.
+ * @datash: The data relevant to counter, arguments.
  *
- * Return: The error string.
+ * Return: The Error string.
  */
-char *err_path_116(data_shell *datash)
+char *error_path_126(data_shell *datash)
 {
 	int length;
 	char *ver_str;
-	char *err;
+	char *error;
 
 	ver_str = aux_itoa(datash->counter);
 	length = _strlen(datash->av[0]) + _strlen(ver_str);
-	length += _strlen(datash->args[0]) + 47;
-	err = malloc(sizeof(char) * (length + 1));
-	if (err == 0)
+	length += _strlen(datash->args[0]) + 24;
+	error = malloc(sizeof(char) * (length + 1));
+	if (error == 0)
 	{
-		free(err);
+		free(error);
 		free(ver_str);
 		return (NULL);
 	}
-	_strcpy(err, datash->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver_str);
-	_strcat(err, ": ");
-	_strcat(err, datash->args[0]);
-	_strcat(err, ": Negative. Accsess denied\n");
-	_strcat(err, "\0");
+	_strcpy(error, datash->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datash->args[0]);
+	_strcat(error, ": Permission denied\n");
+	_strcat(error, "\0");
 	free(ver_str);
-	return (err);
+	return (error);
 }

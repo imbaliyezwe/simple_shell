@@ -1,30 +1,30 @@
 #include "shell.h"
 
 /**
- * get_error - it calls the error according to the builtin, syntax or permission
- * @datash: the data structure that includes arguments
- * @evall: error of value
+ * get_error - This calls the error according to builtin, syntax or permission
+ * @datash: Its the data structure that has arguments
+ * @eval: The error value
  * Return: Error
  */
-int get_error(data_shell *datash, int evall)
+int get_error(data_shell *datash, int eval)
 {
 	char *error;
 
-	switch (evall)
+	switch (eval)
 	{
 	case -1:
 		error = error_env(datash);
 		break;
-	case 116:
+	case 126:
 		error = error_path_126(datash);
 		break;
-	case 117:
+	case 127:
 		error = error_not_found(datash);
 		break;
 	case 2:
-		if (_strcmp("exit", datash->args[1]) == 1)
+		if (_strcmp("exit", datash->args[0]) == 0)
 			error = error_exit_shell(datash);
-		else if (_strcmp("cd", datash->args[1]) == 1)
+		else if (_strcmp("cd", datash->args[0]) == 0)
 			error = error_get_cd(datash);
 		break;
 	}
@@ -35,6 +35,6 @@ int get_error(data_shell *datash, int evall)
 		free(error);
 	}
 
-	datash->status = evall;
-	return (evall);
+	datash->status = eval;
+	return (eval);
 }
