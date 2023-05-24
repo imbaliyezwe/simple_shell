@@ -9,7 +9,7 @@ void aux_help(void)
 	char *help = "help: help [-dms] [pattern ...]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "\It shows information about the builtin commands.\n ";
+	help = "It shows information about the builtin commands.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "It shows brief summaries of the builtin commands.\n";
 	write(STDOUT_FILENO, help, _strlen(help));
@@ -23,7 +23,7 @@ void aux_help_alias(void)
 	char *help = "alias: alias [-z] [name[=value]...]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "\It defines or displays aliases.\n ";
+	help = "It defines or displays aliases.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
 }
 /**
@@ -35,6 +35,6 @@ void aux_help_cd(void)
 	char *help = "cd: cd [-X|[-z [-m]] [-@]] [dir]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
-	help = "\It changes the shell working directory.\n ";
+	help = "It changes the shell working directory.\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
 }

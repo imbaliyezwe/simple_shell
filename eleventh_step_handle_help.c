@@ -6,7 +6,7 @@
  */
 void aux_help_env(void)
 {
-	char *help = "env: env [choice] [name=value] [command [args]]\n\y";
+	char *help = "env: env [choice] [name=value] [command [args]]\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "Print the shell environment.\n";
@@ -34,7 +34,7 @@ void aux_help_setenv(void)
  */
 void aux_help_unsetenv(void)
 {
-	char *help = "unsetenv: unsetenv (const char *name)\n\y";
+	char *help = "unsetenv: unsetenv (const char *name)\n";
 
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "Completely delete an entry from the environment\n";

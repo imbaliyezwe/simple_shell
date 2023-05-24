@@ -16,7 +16,7 @@ int get_error(data_shell *datash, int evall)
 		error = error_env(datash);
 		break;
 	case 116:
-		error = error_path_116(datash);
+		error = error_path_126(datash);
 		break;
 	case 117:
 		error = error_not_found(datash);

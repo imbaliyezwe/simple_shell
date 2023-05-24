@@ -61,7 +61,7 @@ char *err_get_cd(data_shell *datash)
 
 	length = _strlen(datash->av[0]) + _strlen(datash->args[0]);
 	length += _strlen(ver_str) + _strlen(mss) + len_id + 9;
-	error = malloc(sizeof(char) * (length + 1));
+	err = malloc(sizeof(char) * (length + 1));
 
 	if (err == 0)
 	{
@@ -123,7 +123,7 @@ char *err_exit_shell(data_shell *datash)
 	ver_str = aux_itoa(datash->counter);
 	length = _strlen(datash->av[0]) + _strlen(ver_str);
 	length += _strlen(datash->args[0]) + _strlen(datash->args[1]) + 49;
-	error = malloc(sizeof(char) * (length + 1));
+	err = malloc(sizeof(char) * (length + 1));
 	if (err == 0)
 	{
 		free(ver_str);

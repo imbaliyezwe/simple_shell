@@ -38,7 +38,7 @@ void bring_line(char **lineptr, size_t *p, char *buffer, size_t x)
  * @lineptr: the buffer that stores the input
  * @p: Size of lineptr
  * @stream: the stream to read from
- * Return: the number of the bytes
+ * Return: (retval) the number of the bytes
  */
 ssize_t get_line(char **lineptr, size_t *p, FILE *stream)
 {
@@ -59,7 +59,7 @@ ssize_t get_line(char **lineptr, size_t *p, FILE *stream)
 		return (-1);
 	while (y != '\n')
 	{
-		i = read(STDIN_FILENO, &t, 1);
+		w = read(STDIN_FILENO, & 1);
 		if (w == -1 || (w == 0 && input == 0))
 		{
 			free(buffer);

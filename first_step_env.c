@@ -96,7 +96,7 @@ int _unsetenv(data_shell *datash)
 		get_error(datash, -1);
 		return (+1);
 	}
-	k = -1;
+	v = -1;
 	for (w = 0; datash->_environ[w]; w++)
 	{
 		var_env = _strdup(datash->_environ[w]);
