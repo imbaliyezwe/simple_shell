@@ -1,105 +1,71 @@
 #include "shell.h"
 
 /**
- * _strcat - concatenate two strings
- * @dest: destination pointer
- * @src: pointer the source of string
- * Return: dest
+ * _strlen - returns the length of a string
+ * @s: the string to check
+ * Return: length of string
  */
-char *_strcat(char *dest, const char *src)
+int _strlen(char *s)
 {
-	int i;
-	int j;
+	int i = 0;
 
-	for (i = 0; dest[i] != '\0'; i++)
-		;
+	if (!s)
+		return (0);
 
-	for (j = 0; src[j] != '\0'; j++)
-	{
-		dest[i] = src[j];
+	while (*s++)
 		i++;
-	}
-
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }
-/**
- * *_strcpy - Copies the string pointed to.
- * @dest: destination pointer
- * @src: pointer the source of string
- * Return: the dest.
- */
-char *_strcpy(char *dest, char *src)
-{
-	size_t a;
 
-	for (a = 0; src[a] != '\0'; a++)
-	{
-		dest[a] = src[a];
-	}
-	dest[a] = '\0';
-
-	return (dest);
-}
 /**
- * _strcmp - compares two strings.
+ * _strcmp - performs comparison of two strings.
  * @s1: first string
  * @s2: second string
- * Return: Always 0.
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i;
-
-	for (i = 0; s1[i] == s2[i] && s1[i]; i++)
-		;
-
-	if (s1[i] > s2[i])
-		return (1);
-	if (s1[i] < s2[i])
-		return (-1);
-	return (0);
-}
-/**
- * _strchr -function identifies a character in a string,
- * @s: string.
- * @c: character.
- * Return: the pointer to the character c.
- */
-char *_strchr(char *s, char c)
-{
-	unsigned int i = 0;
-
-	for (; *(s + i) != '\0'; i++)
-		if (*(s + i) == c)
-			return (s + i);
-	if (*(s + i) == c)
-		return (s + i);
-	return ('\0');
-}
-/**
- * _strspn - function gets  the length of a substring.
- * @s:  string.
- * @accept: accepted bytes.
- * Return: the number of accepted bytes.
- */
-int _strspn(char *s, char *accept)
-{
-	int i, j, bool;
-
-	for (i = 0; *(s + i) != '\0'; i++)
+	while (*s1 && *s2)
 	{
-		bool = 1;
-		for (j = 0; *(accept + j) != '\0'; j++)
-		{
-			if (*(s + i) == *(accept + j))
-			{
-				bool = 0;
-				break;
-			}
-		}
-		if (bool == 1)
-			break;
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
 	}
-	return (i);
+	if (*s1 == *s2)
+		return (0);
+	else
+		return (*s1 < *s2 ? -1 : 1);
+}
+
+/**
+ * starts_with - checks if needle starts with haystack
+ * @haystack: string to check
+ * @needle: the substring
+ * Return: address of next char of haystack or NULL
+ */
+char *starts_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
+}
+
+/**
+ * _strcat - concatenates two strings
+ * @dest: the destination buffer
+ * @src: the source
+ * Return: pointer to dest
+ */
+char *_strcat(char *dest, char *src)
+{
+	char *ret = dest;
+
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ret);
 }

@@ -1,126 +1,82 @@
 #include "shell.h"
 
 /**
+ * _strcpy - copies a string
+ * @dest: the destination
+ * @src: the source
+ * Return: pointer to dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+/**
  * _strdup - duplicates a string
- * @s: pointer to string
+ * @str: the string
  * Return: duplicated string
  */
-char *_strdup(const char *s)
+char *_strdup(const char *str)
 {
-	char *new;
-	size_t len;
+	int length = 0;
+	char *ret;
 
-	len = _strlen(s);
-	new = malloc(sizeof(char) * (len + 1));
-	if (new == NULL)
+	if (str == NULL)
 		return (NULL);
-	_memcpy(new, s, len + 1);
-	return (new);
-}
-
-/**
- * _strlen - Returns the lenght of a string.
- * @s: pointer to string
- * Return: Always 0.
- */
-int _strlen(const char *s)
-{
-	int len;
-
-	for (len = 0; s[len] != 0; len++)
-	{
-	}
-	return (len);
-}
-
-/**
- * cmp_chars - Compare characters of a strings
- * @str: string to compare.
- * @delim: delimiter.
- * Return: 1 if are equals, else 0.
- */
-int cmp_chars(char str[], const char *delim)
-{
-	unsigned int i, j, k;
-
-	for (i = 0, k = 0; str[i]; i++)
-	{
-		for (j = 0; delim[j]; j++)
-		{
-			if (str[i] == delim[j])
-			{
-				k++;
-				break;
-			}
-		}
-	}
-	if (i == k)
-		return (1);
-	return (0);
-}
-
-/**
- * _strtok - splits a string.
- * @str: string to split.
- * @delim: delimiter.
- * Return: splited string.
- */
-char *_strtok(char str[], const char *delim)
-{
-	static char *splitted, *str_end;
-	char *str_start;
-	unsigned int i, bool;
-
-	if (str != NULL)
-	{
-		if (cmp_chars(str, delim))
-			return (NULL);
-		splitted = str; 
-		i = _strlen(str);
-		str_end = &str[i]; 
-	}
-	str_start = splitted;
-	if (str_start == str_end) 
+	while (*str++)
+		length++;
+	ret = malloc(sizeof(char) * (length + 1));
+	if (!ret)
 		return (NULL);
-
-	for (bool = 0; *splitted; splitted++)
-	{
-		
-		if (splitted != str_start)
-			if (*splitted && *(splitted - 1) == '\0')
-				break;
-		
-		for (i = 0; delim[i]; i++)
-		{
-			if (*splitted == delim[i])
-			{
-				*splitted = '\0';
-				if (splitted == str_start)
-					str_start++;
-				break;
-			}
-		}
-		if (bool == 0 && *splitted) 
-			bool = 1;
-	}
-	if (bool == 0) 
-		return (NULL);
-	return (str_start);
+	for (length++; length--;)
+		ret[length] = *--str;
+	return (ret);
 }
 
 /**
- * _isdigit - checks if string is a number
- * @s: string to check
- * Return: 1 if string is a number. otherwise 0
+ * _puts - prints an input string
+ * @str: the string
+ * Return: No return
  */
-int _isdigit(const char *s)
+void _puts(char *str)
 {
-	unsigned int i;
+	int i = 0;
 
-	for (i = 0; s[i]; i++)
+	if (!str)
+		return;
+	while (str[i] != '\0')
 	{
-		if (s[i] < 48 || s[i] > 57)
-			return (0);
+		_putchar(str[i]);
+		i++;
 	}
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ * Return: On succes 1, otherwise -1 and errno is set appropriate
+ */
+int _putchar(char c)
+{
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
 	return (1);
 }
