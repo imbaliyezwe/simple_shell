@@ -68,7 +68,7 @@ int print_d(int input, int fd)
 		count++;
 	}
 	else
-		_abs_ = input;
+		_sbs_ = input;
 	current = _sbs_;
 	for (w = 1000000000; w > 1; w /= 10)
 	{
