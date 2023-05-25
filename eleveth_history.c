@@ -85,7 +85,7 @@ int read_history(info_t *info)
 	if (rdlen <= 0)
 		return (free(buf), 0);
 	close(fd);
-	for (w = 0; w < fsize; i++)
+	for (w = 0; w < fsize; w++)
 		if (buf[w] == '\n')
 		{
 			buf[w] = 0;

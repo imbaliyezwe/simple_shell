@@ -26,7 +26,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 #endif
 		if (s > 0)
 		{
-			if ((*buf)[r - 1] == '\n')
+			if ((*buf)[s - 1] == '\n')
 			{
 				(*buf)[s - 1] = '\0'; /* delete the trailing newline */
 				s--;
@@ -77,7 +77,7 @@ ssize_t get_input(info_t *info)
 		w = v + 1; /* the increment past nulled ';'' */
 		if (w >= len) /* end of buffer reached? */
 		{
-			i = len = 0; /* reset the position and length */
+			w = len = 0; /* reset the position and length */
 			info->cmd_buf_type = CMD_NORM;
 		}
 
@@ -136,7 +136,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 		return (-1);
 
 	c = _strchr(buf + w, '\n');
-	k = c ? 1 + (unsigned int)(c - buf) : len;
+	y = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, r, r ? r + y : y + 1);
 	if (!new_p) /* MALLOC FAILURE! */
 		return (p ? free(p), -1 : -1);

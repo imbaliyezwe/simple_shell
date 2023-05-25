@@ -65,6 +65,7 @@ char *_strncat(char *dest, char *src, int n)
  *Return: (s) A pointer to the memory area s
  */
 char *_strchr(char *s, char a)
+{
 
 	do {
 		if (*s == a)
