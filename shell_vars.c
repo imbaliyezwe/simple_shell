@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * is_chain - test if current char is a chain delimeter
- * @info: information struct
+ * is_chain - test if char in buffer is a chain delimeter
+ * @info: parameter struct
  * @buf: the char buffer
- * @p: address of current position
- * Return: 1 if chain delimeter, 0 otherwise
+ * @p: current position in buf
+ * Return: 1 if chain delimeter, otherwise 0
  */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
@@ -35,11 +35,11 @@ int is_chain(info_t *info, char *buf, size_t *p)
 }
 
 /**
- * check_chain - checks chaining based on last status
- * @info: infomation struct
+ * check_chain - checks continue chaining based on last status
+ * @info: parameter struct
  * @buf: the char buffer
- * @p: address of current position
- * @i: starting position
+ * @p: current position in buf
+ * @i: starting point buffer
  * @len: length of buffer
  * Return: no return
  */
@@ -68,9 +68,9 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 }
 
 /**
- * replace_alias - replaces an aliases in the string
- * @info: infomation struct
- * Return: 1 if replaced, 0 otherwise
+ * replace_alias - replaces an aliases in the tokenized string
+ * @info: parameter struct
+ * Return: 1 if replaced, otherwise 0
  */
 int replace_alias(info_t *info)
 {
@@ -96,9 +96,9 @@ int replace_alias(info_t *info)
 }
 
 /**
- * replace_vars - replaces variables in the tokenized string
- * @info: infomation struct
- * Return: 1 if replaced, 0 otherwise
+ * replace_vars - replaces variables
+ * @info: parameter struct
+ * Return: 1 if replaced, otherwise 0
  */
 int replace_vars(info_t *info)
 {
@@ -136,10 +136,10 @@ int replace_vars(info_t *info)
 }
 
 /**
- * replace_string - replaces string
- * @old: address of old string
+ * replace_string -function replaces string
+ * @old: old string
  * @new: new string
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 if replaced, otherwise 0
  */
 int replace_string(char **old, char *new)
 {
